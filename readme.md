@@ -1,4 +1,4 @@
-# RequestR with Microsoft Dependency Injection - Getting Started
+# RequestR with Microsoft Dependency Injection
 
 ## 1) Setup Services
 
