@@ -32,7 +32,7 @@ namespace DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection
 
         public static void Configure(IServiceProvider serviceProvider)
         {
-            RequestR.RequestBus requestBus = serviceProvider.GetService<RequestR.RequestBus>();
+            RequestBus requestBus = serviceProvider.GetService<RequestBus>();
             requestBus.RegisterAllHandlers();
         }
     }

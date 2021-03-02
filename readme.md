@@ -2,7 +2,7 @@
 
 ## 1) Setup Services
 
-**Note**: Include Microsoft.DependencyInjection nuget package.
+**Note**: Include `RequestR.Extensions.Microsoft.DependencyInjection` nuget package.
 
 ```csharp
 ServiceCollection serviceCollection = new ServiceCollection();
@@ -22,5 +22,5 @@ requestBus.RegisterAllHandlers();
 
 ```csharp
 PresentProductsRequest request = new PresentProductsRequest();
-List<Product> products = requestBus.Send<PresentProductsRequest, List<Product>>(request);
+MyResponse response = requestBus.Send<MyRequest, MyResponse>(request);
 ```

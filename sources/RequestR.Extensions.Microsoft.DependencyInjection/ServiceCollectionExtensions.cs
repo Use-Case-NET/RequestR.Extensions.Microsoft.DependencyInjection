@@ -26,7 +26,7 @@ namespace DustInTheWind.RequestR.Extensions.Microsoft.DependencyInjection
         public static void AddRequestBus(this ServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IRequestHandlerFactory, RequestHandlerFactory>();
-            serviceCollection.AddSingleton<RequestR.RequestBus>();
+            serviceCollection.AddSingleton<RequestBus>();
             serviceCollection.AddAllHandlersAndValidators();
         }
 
