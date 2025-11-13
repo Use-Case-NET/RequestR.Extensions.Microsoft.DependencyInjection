@@ -1,38 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFrameworks>netcoreapp3.1;net462;netstandard2.1</TargetFrameworks>
-        <AssemblyName>DustInTheWind.RequestR.Extensions.Microsoft.DependencyInjection</AssemblyName>
-        <RootNamespace>DustInTheWind.RequestR.Extensions.Microsoft.DependencyInjection</RootNamespace>
-        <Version>1.0.0</Version>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Authors>Dust in the Wind</Authors>
-        <Description></Description>
-        <PackageLicenseFile>license.txt</PackageLicenseFile>
-        <PackageTags>microsoft-dependency-injection;microsoft;dependency-injection;requestr;mediator;mediator-pattern;request;response;business-layer;use-case;use-cases</PackageTags>
-        <PackageId>RequestR.Extensions.Microsoft.DependencyInjection</PackageId>
-        <Product>RequestR.Extensions.Microsoft.DependencyInjection</Product>
-        <Copyright>Copyright 2021 Dust in the Wind</Copyright>
-    </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Description>Setup RequestR to be used from Microsoft Dependency Injection</Description>
+		<PackageLicenseFile>license.txt</PackageLicenseFile>
+		<PackageTags>microsoft-dependency-injection;microsoft;dependency-injection;requestr;mediator;mediator-pattern;request;response;business-layer;use-case;use-cases</PackageTags>
+		<PackageId>RequestR.Extensions.Microsoft.DependencyInjection</PackageId>
+	</PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
-      <DocumentationFile>DustInTheWind.RequestR.Extensions.Microsoft.DependencyInjection.xml</DocumentationFile>
-    </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+		<PackageReference Include="RequestR" Version="2.0.1" />
+	</ItemGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|AnyCPU'">
-      <DocumentationFile>DustInTheWind.RequestR.Extensions.Microsoft.DependencyInjection.xml</DocumentationFile>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
-        <PackageReference Include="RequestR" Version="1.0.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Include="..\license.txt">
-        <Pack>True</Pack>
-        <PackagePath></PackagePath>
-      </None>
-    </ItemGroup>
+	<ItemGroup>
+		<None Include="..\license.txt">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>
