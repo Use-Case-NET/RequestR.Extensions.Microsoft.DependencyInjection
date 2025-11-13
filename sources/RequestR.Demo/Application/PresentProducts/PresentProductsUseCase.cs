@@ -14,14 +14,13 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Collections.Generic;
 using DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Domain;
 
 namespace DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Application.PresentProducts
 {
-    internal class PresentProductsRequestHandler : IRequestHandler<PresentProductsRequest, List<Product>>
+    internal class PresentProductsUseCase : IUseCase<PresentProductsRequest, List<Product>>
     {
-        public List<Product> Handle(PresentProductsRequest request)
+        public async Task<List<Product>> Execute(PresentProductsRequest request, CancellationToken cancellationToken)
         {
             return new List<Product>
             {

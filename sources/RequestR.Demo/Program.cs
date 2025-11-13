@@ -14,35 +14,32 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Presentation.Commands;
+using DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Presentation.DisplayProducts;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection
+namespace DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection;
+
+internal class Program
 {
-    internal class Program
+    private static void Main(string[] args)
     {
-        private static void Main(string[] args)
-        {
-            ServiceProvider serviceProvider = SetupApplication();
+        ServiceProvider serviceProvider = SetupApplication();
 
-            Run(serviceProvider);
-        }
+        Run(serviceProvider);
+    }
 
-        private static ServiceProvider SetupApplication()
-        {
-            ServiceCollection serviceCollection = new ServiceCollection();
-            Startup.ConfigureServices(serviceCollection);
+    private static ServiceProvider SetupApplication()
+    {
+        ServiceCollection serviceCollection = new();
+        Startup.ConfigureServices(serviceCollection);
 
-            ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
-            Startup.Configure(serviceProvider);
+        ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
+        return serviceProvider;
+    }
 
-            return serviceProvider;
-        }
-
-        private static void Run(ServiceProvider serviceProvider)
-        {
-            ProductsCommand productsCommand = serviceProvider.GetService<ProductsCommand>();
-            productsCommand.Execute();
-        }
+    private static void Run(ServiceProvider serviceProvider)
+    {
+        ProductsCommand productsCommand = serviceProvider.GetService<ProductsCommand>();
+        productsCommand.Execute();
     }
 }

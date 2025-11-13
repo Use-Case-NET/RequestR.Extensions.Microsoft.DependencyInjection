@@ -14,11 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
 using DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Domain;
-using DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Presentation.ViewModels;
 
-namespace DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Presentation.Views
+namespace DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Presentation.DisplayProducts
 {
     internal class ProductsView
     {

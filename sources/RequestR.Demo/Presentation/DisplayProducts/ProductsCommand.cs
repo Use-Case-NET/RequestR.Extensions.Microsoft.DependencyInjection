@@ -14,34 +14,30 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using System.Collections.Generic;
 using DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Application.PresentProducts;
 using DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Domain;
-using DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Presentation.ViewModels;
-using DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Presentation.Views;
 
-namespace DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Presentation.Commands
+namespace DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Presentation.DisplayProducts
 {
     internal class ProductsCommand
     {
-        private readonly RequestR.RequestBus requestBus;
+        private readonly RequestBus requestBus;
 
-        public ProductsCommand(RequestR.RequestBus requestBus)
+        public ProductsCommand(RequestBus requestBus)
         {
             this.requestBus = requestBus ?? throw new ArgumentNullException(nameof(requestBus));
         }
 
         public void Execute()
         {
-            PresentProductsRequest request = new PresentProductsRequest();
-            List<Product> products = requestBus.Send<PresentProductsRequest, List<Product>>(request);
+            PresentProductsRequest request = new();
+            List<Product> products = requestBus.Process<PresentProductsRequest, List<Product>>(request);
 
-            ProductsViewModel viewModel = new ProductsViewModel
+            ProductsViewModel viewModel = new()
             {
                 Products = products
             };
-            ProductsView view = new ProductsView(viewModel);
+            ProductsView view = new(viewModel);
             view.Display();
         }
     }

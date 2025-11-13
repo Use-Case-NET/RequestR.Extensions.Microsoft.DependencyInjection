@@ -14,27 +14,19 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
+namespace DustInTheWind.RequestR.Extensions.Microsoft.DependencyInjection;
 
-namespace DustInTheWind.RequestR.Extensions.Microsoft.DependencyInjection
+internal class UseCaseFactory : UseCaseFactoryBase
 {
-    internal class RequestHandlerFactory : IRequestHandlerFactory
+    private readonly IServiceProvider serviceProvider;
+
+    public UseCaseFactory(IServiceProvider serviceProvider)
     {
-        private readonly IServiceProvider serviceProvider;
+        this.serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+    }
 
-        public RequestHandlerFactory(IServiceProvider serviceProvider)
-        {
-            this.serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
-        }
-
-        public T Create<T>()
-        {
-            return (T)serviceProvider.GetService(typeof(T));
-        }
-
-        public object Create(Type type)
-        {
-            return serviceProvider.GetService(type);
-        }
+    protected override object CreateInternal(Type type)
+    {
+        return serviceProvider.GetService(type);
     }
 }

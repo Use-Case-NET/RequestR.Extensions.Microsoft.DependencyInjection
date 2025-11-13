@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-using DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Presentation.Commands;
+using DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Application.PresentProducts;
+using DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection.Presentation.DisplayProducts;
 using DustInTheWind.RequestR.Extensions.Microsoft.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,15 +25,12 @@ namespace DustInTheWind.RequestR.Demo.Microsoft.DependencyInjection
     {
         public static void ConfigureServices(ServiceCollection serviceCollection)
         {
-            serviceCollection.AddRequestBus();
+            serviceCollection.AddUseCaseEngine(options =>
+            {
+                options.AddFromAssemblyContaining<PresentProductsRequest>();
+            });
 
             serviceCollection.AddTransient<ProductsCommand>();
-        }
-
-        public static void Configure(IServiceProvider serviceProvider)
-        {
-            RequestBus requestBus = serviceProvider.GetService<RequestBus>();
-            requestBus.RegisterAllHandlers();
         }
     }
 }
