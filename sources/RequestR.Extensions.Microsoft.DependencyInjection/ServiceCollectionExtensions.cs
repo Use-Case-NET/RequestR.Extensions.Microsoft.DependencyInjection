@@ -20,7 +20,7 @@ namespace DustInTheWind.RequestR.Extensions.Microsoft.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {
-    public static void AddUseCaseEngine(this ServiceCollection serviceCollection, Action<UseCaseEngineOptions> setupOptions)
+    public static void AddUseCaseEngine(this IServiceCollection serviceCollection, Action<UseCaseEngineOptions> setupOptions)
     {
         if (setupOptions is null) throw new ArgumentNullException(nameof(setupOptions));
 
@@ -48,44 +48,4 @@ public static class ServiceCollectionExtensions
         foreach (Type validatorType in options.ValidatorTypes)
             serviceCollection.AddTransient(validatorType);
     }
-
-    //private static void AddAllHandlersAndValidators(this ServiceCollection serviceCollection)
-    //{
-    //    if (serviceCollection == null) throw new ArgumentNullException(nameof(serviceCollection));
-
-    //    IEnumerable<Type> useCaseOrValidatorTypes = AppDomain.CurrentDomain.GetAssemblies()
-    //        .SelectMany(x => x.GetAllRequestHandlersOrValidators());
-
-    //    foreach (Type useCaseOrValidatorType in useCaseOrValidatorTypes)
-    //        serviceCollection.AddTransient(useCaseOrValidatorType);
-    //}
-
-    //private static IEnumerable<Type> GetAllRequestHandlersOrValidators(this Assembly assembly)
-    //{
-    //    Type[] types = assembly.GetTypes();
-
-    //    foreach (Type type in types)
-    //    {
-    //        if (type.IsClass && !type.IsAbstract)
-    //        {
-    //            Type[] interfaces = type.GetInterfaces();
-
-    //            foreach (Type @interface in interfaces)
-    //            {
-    //                if (@interface.IsGenericType)
-    //                {
-    //                    Type genericTypeDefinition = @interface.GetGenericTypeDefinition();
-
-    //                    if (genericTypeDefinition == typeof(IUseCase<,>) ||
-    //                        genericTypeDefinition == typeof(IUseCase<>) ||
-    //                        genericTypeDefinition == typeof(IRequestValidator<>))
-    //                    {
-    //                        yield return type;
-    //                        break;
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
 }
